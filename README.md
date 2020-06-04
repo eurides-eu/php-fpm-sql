@@ -1,2 +1,8 @@
-# php-fpm-sql
-Docker image for using php with sql server
+# PHP FPM Docker image for MS SQLServer
+
+This image contains:
+
+- Composer
+- Chrome driver for RPA
+- Sql server drivers
+- Sqreen drivers for security
