@@ -14,6 +14,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build . -f dockerfile --tag "$IMAGE_NAME:php-74$GITHUB_RUN_NUMBER" .
+      run: docker build -f dockerfile --tag "$IMAGE_NAME:php-74$GITHUB_RUN_NUMBER" .
     - name: Push the Docker image
       run: docker login -u $DOCKER_USER -p $DOCKER_PASS && docker push "$IMAGE_NAME:php-74$GITHUB_RUN_NUMBER"
