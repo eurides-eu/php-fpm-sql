@@ -1,4 +1,4 @@
-FROM php:7.4.6-fpm-alpine as base
+FROM php:7.4.10-fpm-alpine as base
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
