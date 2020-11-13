@@ -1,4 +1,4 @@
-FROM php:7.4.10-fpm-alpine as base
+FROM php:7.4.12-fpm-alpine as base
 
 COPY --from=mlocati/php-extension-installer /usr/bin/install-php-extensions /usr/bin/
 
@@ -20,8 +20,6 @@ ENV LC_ALL=C
 RUN curl -sSL https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
 ENV COMPOSER_ALLOW_SUPERUSER 1
-
-RUN composer global require hirak/prestissimo --no-plugins --no-scripts
 
 ARG TYPE_ENV=production
 RUN mv "$PHP_INI_DIR/php.ini-${TYPE_ENV}" "$PHP_INI_DIR/php.ini" \
