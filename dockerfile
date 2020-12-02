@@ -23,7 +23,8 @@ ENV COMPOSER_ALLOW_SUPERUSER 1
 
 ARG TYPE_ENV=production
 RUN mv "$PHP_INI_DIR/php.ini-${TYPE_ENV}" "$PHP_INI_DIR/php.ini" \
-    && sed -e 's/max_execution_time = 30/max_execution_time = 600/' -i "$PHP_INI_DIR/php.ini"
+    && sed -e 's/max_execution_time = 30/max_execution_time = 600/' -i "$PHP_INI_DIR/php.ini" \
+    && sed -e 's/access.log = \/proc\/self\/fd\/2/access.log = \/dev\/null/' -i "/usr/local/etc/php-fpm.d/docker.conf"
 
 ENV PHP_VERSION 7.4
 
