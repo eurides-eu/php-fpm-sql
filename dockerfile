@@ -37,8 +37,8 @@ RUN mkdir /tmp/sqreen-apk && cd /tmp/sqreen-apk \
     && cd /var/www/html/
 
 ENV DATADOG_VERSION 0.56.0
-RUN curl -O https://github.com/DataDog/dd-trace-php/releases/download/${${DATADOG_VERSION}}/datadog-php-tracer_${DATADOG_VERSION}_noarch.apk \
-    && apk add datadog-php-tracer_${${DATADOG_VERSION}}_noarch.apk --allow-untrusted --no-cache 
+RUN curl -O https://github.com/DataDog/dd-trace-php/releases/download/${DATADOG_VERSION}/datadog-php-tracer_${DATADOG_VERSION}_noarch.apk \
+    && apk add datadog-php-tracer_${DATADOG_VERSION}_noarch.apk --allow-untrusted --no-cache 
 
 COPY ./sqreen.ini /usr/local/etc/php/conf.d/90-sqreen.ini
 
