@@ -32,11 +32,13 @@ ENV PHP_VERSION 7.4
 RUN mkdir /tmp/sqreen-apk && cd /tmp/sqreen-apk \
     && curl -O https://download.sqreen.com/php/sqreen-php-extension/alpine/sqreen-php-extension-latest-alpine.tar.gz \
     && tar -xzvf sqreen-php-extension-latest-alpine.tar.gz \
-    && apk add --no-cache --allow-untrusted ${PHP_VERSION}/sq-ext-alpine-*.apk && \
+    && apk add --no-cache --allow-untrusted ${PHP_VERSION}/sq-ext-alpine-*.apk \
     && rm -r /tmp/sqreen-apk \
     && cd /var/www/html/
 
-RUN apk add datadog-php-tracer_0.56.0_noarch.apk --allow-untrusted --no-cache 
+ENV DATADOG_VERSION 0.56.0
+RUN curl -O https://github.com/DataDog/dd-trace-php/releases/download/${${DATADOG_VERSION}}/datadog-php-tracer_${DATADOG_VERSION}_noarch.apk \
+    && apk add datadog-php-tracer_${${DATADOG_VERSION}}_noarch.apk --allow-untrusted --no-cache 
 
 COPY ./sqreen.ini /usr/local/etc/php/conf.d/90-sqreen.ini
 
